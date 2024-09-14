@@ -1,0 +1,27 @@
+{% from "bootstrap5/form.html" import render_form %} {% block content %}
+{%include "header.html"%}
+<!-- Page Header-->
+        <header class="masthead" style="background-image: url('/static/assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Tech Blog</h1>
+                            <span class="subheading">{{current_user.username}} EDIT INFO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+    <div class="container" style="width:500px;padding-bottom:150px;">
+        {% with messages=get_flashed_messages() %}
+            {% if messages %}
+                {%for message in messages%}
+                    <p class="flash"> {{message}}</p>
+                {%endfor%}
+            {%endif%}
+        {%endwith%}
+    {{render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    </div>
+{%include "footer.html"%}{% endblock %}
